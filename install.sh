@@ -1,6 +1,7 @@
 #!/bin/bash
 
 read -p "Enter Version (2.5.3): " xversion
+xversion=${xversion:-latest}
 echo "Version entered.: $xversion"
 
 ARCH=$(uname -m)
