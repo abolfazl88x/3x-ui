@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Ask user for version
 read -p "Enter desired version (leave empty for latest): " input_version
 
 if [[ -z "$input_version" ]]; then
@@ -13,7 +12,6 @@ fi
 
 echo "Selected version: $xversion"
 
-# Detect system architecture
 ARCH=$(uname -m)
 case "${ARCH}" in
   x86_64 | x64 | amd64) XUI_ARCH="amd64" ;;
@@ -23,27 +21,22 @@ case "${ARCH}" in
   *) XUI_ARCH="amd64" ;;
 esac
 
-# Go to root directory
 cd /root/
 
-# Remove old installations
 rm -rf x-ui/ /usr/local/x-ui/ /usr/bin/x-ui
 
-# Download appropriate version
 if [ "$xversion" = "latest" ]; then
   wget -O x-ui.tar.gz https://github.com/MHSanaei/3x-ui/releases/latest/download/x-ui-linux-${XUI_ARCH}.tar.gz
 else
   wget -O x-ui.tar.gz https://github.com/MHSanaei/3x-ui/releases/download/${urlversion}/x-ui-linux-${XUI_ARCH}.tar.gz
 fi
 
-# Extract and install
 tar zxvf x-ui.tar.gz
 chmod +x x-ui/x-ui x-ui/bin/xray-linux-* x-ui/x-ui.sh
 cp x-ui/x-ui.sh /usr/bin/x-ui
 cp -f x-ui/x-ui.service /etc/systemd/system/
 mv x-ui/ /usr/local/
 
-# Enable and start service
 systemctl daemon-reload
 systemctl enable x-ui
 systemctl restart x-ui
