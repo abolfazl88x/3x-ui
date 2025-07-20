@@ -25,11 +25,7 @@ cd /root/
 
 rm -rf x-ui/ /usr/local/x-ui/ /usr/bin/x-ui
 
-if [ "$xversion" = "latest" ]; then
-  wget -O x-ui.tar.gz https://github.com/MHSanaei/3x-ui/releases/latest/download/x-ui-linux-${XUI_ARCH}.tar.gz
-else
-  wget -O x-ui.tar.gz https://github.com/MHSanaei/3x-ui/releases/download/${urlversion}/x-ui-linux-${XUI_ARCH}.tar.gz
-fi
+wget -O x-ui.tar.gz https://github.com/MHSanaei/3x-ui/releases/download/${urlversion}/x-ui-linux-${XUI_ARCH}.tar.gz
 
 tar zxvf x-ui.tar.gz
 chmod +x x-ui/x-ui x-ui/bin/xray-linux-* x-ui/x-ui.sh
