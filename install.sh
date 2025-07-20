@@ -7,7 +7,7 @@ if [[ -z "$input_version" ]]; then
   urlversion="latest"
 else
   xversion="$input_version"
-  urlversion="v-$input_version"
+  urlversion="v$input_version"
 fi
 
 echo "Selected version: $xversion"
